@@ -29,26 +29,6 @@ const NewReminderScreen = ({ selectedScreen }) => {
     }, [reminders, selectedScreen]);
 
 
-    const saveReminder = async (title, frequency, comment) => {
-        try {
-            const newReminder = {
-                title,
-                frequency,
-                comment: comment || '',
-                dateAdded: new Date().toISOString(),
-            };
-
-            const existingReminders = await AsyncStorage.getItem('reminders');
-            const reminders = existingReminders ? JSON.parse(existingReminders) : [];
-            reminders.push(newReminder);
-
-            await AsyncStorage.setItem('reminders', JSON.stringify(reminders));
-        } catch (error) {
-            console.error('Error saving reminder:', error);
-            Alert.alert('Error', 'Failed to add reminder');
-        }
-    };
-
     const loadReminders = async () => {
         try {
             const reminders = await AsyncStorage.getItem('reminders');
@@ -58,6 +38,44 @@ const NewReminderScreen = ({ selectedScreen }) => {
             return [];
         }
     };
+
+
+    const saveReminder = async (title, frequency, comment) => {
+        const maxId = reminders.length > 0 ? Math.max(...reminders.map(rem => rem.id)) : 0;
+        try {
+            const newReminder = {
+                title,
+                frequency,
+                comment: comment || '',
+                dateAdded: new Date().toISOString(),
+                id: maxId + 1,
+            };
+
+            const existingReminders = await AsyncStorage.getItem('reminders');
+            const reminders = existingReminders ? JSON.parse(existingReminders) : [];
+            reminders.unshift(newReminder);
+
+            await AsyncStorage.setItem('reminders', JSON.stringify(reminders));
+        } catch (error) {
+            console.error('Error saving reminder:', error);
+            Alert.alert('Error', 'Failed to add reminder');
+        }
+    };
+
+    const removeReminder = async (reminderToRemove) => {
+        try {
+            const updatedReminders = reminders.filter(rem =>
+                !(rem.id === reminderToRemove.id)
+            );
+            await AsyncStorage.setItem('reminders', JSON.stringify(updatedReminders));
+            setReminders(updatedReminders);
+        } catch (error) {
+            console.error('Error removing reminder:', error);
+            Alert.alert('Error', 'Failed to remove reminder from reminders.');
+        }
+    };
+
+    
 
     const addFrequency = () => {
         setFrequency((prev) => prev + 1);
@@ -103,11 +121,10 @@ const NewReminderScreen = ({ selectedScreen }) => {
                         fontSize: dimensions.width * 0.07,
                         fontWeight: 400,
                         color: 'white',
-                        marginLeft: dimensions.width * 0.019,
                         textTransform: 'uppercase',
                     }}
                 >
-                    {isAddingNewReminder ? 'new reminder:' : 'my reminders'}
+                    {isAddingNewReminder ? 'new reminder:' : 'my reminders:'}
                 </Text>
             </TouchableOpacity>
 
@@ -433,7 +450,7 @@ const NewReminderScreen = ({ selectedScreen }) => {
 
                                 {reminders.map((reminder, index) => (
                                     <View
-                                        key={index}
+                                        key={reminder.id}
                                         style={{
                                             backgroundColor: '#1E1E1E',
                                             width: dimensions.width * 0.9,
@@ -471,7 +488,7 @@ const NewReminderScreen = ({ selectedScreen }) => {
                                             </Text>
 
                                             <TouchableOpacity onPress={() => {
-
+                                                removeReminder(reminder);
                                             }}>
                                                 <Image
                                                     source={require('../assets/icons/deleteIcon.png')}

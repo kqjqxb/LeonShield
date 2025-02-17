@@ -1,17 +1,45 @@
 import { View, Text, Image, Dimensions, StyleSheet, TouchableOpacity, SafeAreaView, Share, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ArrowUpOnSquareIcon } from 'react-native-heroicons/solid';
-import { styled } from 'nativewind';
-import { ScrollView } from 'react-native-gesture-handler';
+import * as Keychain from 'react-native-keychain';
+import Clipboard from '@react-native-clipboard/clipboard';
 
-const fontMontserratRegular = 'Montserrat-Regular';
-const fontMontserratSemiBold = 'Montserrat-SemiBold';
+
+
 const fontMontserratBold = 'Montserrat-Bold';
 const fontIceLandRegular = 'Iceland-Regular';
 
 const PassGeneratorScreen = ({ }) => {
     const [dimensions, setDimensions] = useState(Dimensions.get('window'));
+    const [generatedPassword, setGeneratedPassword] = useState('');
+
+    const generateRandomPassword = (length) => {
+        const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
+        let password = "";
+        for (let i = 0, n = charset.length; i < length; ++i) {
+            password += charset.charAt(Math.floor(Math.random() * n));
+        }
+        return password;
+    };
+
+    const generatePassword = async () => {
+        try {
+            const password = generateRandomPassword(12); // Generate a 12-character password
+            setGeneratedPassword(password);
+            Alert.alert('Generated Password', password);
+
+            // Optionally, store the password in the keychain
+            await Keychain.setGenericPassword('user', password);
+        } catch (error) {
+            console.error('Error generating password', error);
+            Alert.alert('Error', 'Failed to generate password');
+        }
+    };
+
+
+    const copyToClipboard = () => {
+        Clipboard.setString(generatedPassword);
+        Alert.alert('Copied to Clipboard', 'The generated password has been copied to your clipboard.');
+    };
 
     return (
         <SafeAreaView style={{ marginBottom: 100, width: '100%', }}>
@@ -61,7 +89,7 @@ const PassGeneratorScreen = ({ }) => {
                 >
                     ****_****_****
                 </Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={copyToClipboard}>
                     <Image
                         source={require('../assets/icons/copyIcon.png')}
                         style={{
@@ -77,7 +105,7 @@ const PassGeneratorScreen = ({ }) => {
 
 
             <TouchableOpacity
-
+                onPress={generatePassword}
                 style={{
                     backgroundColor: '#FF1A1A',
                     padding: dimensions.width * 0.05,

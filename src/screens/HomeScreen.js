@@ -104,7 +104,28 @@ const HomeScreen = () => {
   const scrollViewRef = useRef(null);
 
   const [randomTip, setRandomTip] = useState(null);
-  
+  const [reminders, setReminders] = useState([]);
+
+  useEffect(() => {
+    const fetchReminders = async () => {
+      const loadedReminders = await loadReminders();
+      setReminders(loadedReminders);
+    };
+
+    fetchReminders();
+  }, [reminders, selectedScreen]);
+
+
+  const loadReminders = async () => {
+    try {
+      const reminders = await AsyncStorage.getItem('reminders');
+      return reminders ? JSON.parse(reminders) : [];
+    } catch (error) {
+      console.error('Error loading reminders:', error);
+      return [];
+    }
+  };
+
 
 
 
@@ -201,6 +222,29 @@ const HomeScreen = () => {
   };
 
 
+  const removeReminder = async (reminderToRemove) => {
+    try {
+      const updatedReminders = reminders.filter(rem =>
+        !(rem.id === reminderToRemove.id)
+      );
+      await AsyncStorage.setItem('reminders', JSON.stringify(updatedReminders));
+      setReminders(updatedReminders);
+    } catch (error) {
+      console.error('Error removing reminder:', error);
+      Alert.alert('Error', 'Failed to remove reminder from reminders.');
+    }
+  };
+
+
+  const calculateRemainingDays = (dateAdded, frequency) => {
+    const currentDate = new Date();
+    const addedDate = new Date(dateAdded);
+    const diffTime = Math.abs(currentDate - addedDate);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return Math.max(frequency - diffDays, 0) + 1;
+  };
+
+
   return (
     <View style={{
       flex: 1,
@@ -265,7 +309,7 @@ const HomeScreen = () => {
             ref={scrollViewRef}
             showsVerticalScrollIndicator={false}
             style={{
-              marginTop: dimensions.height * 0.021,
+              marginTop: dimensions.height * 0.025,
               width: '100%',
             }}
           >
@@ -274,57 +318,181 @@ const HomeScreen = () => {
               <Text
                 style={{
                   fontFamily: fontIceLandRegular,
+                  textAlign: "left",
                   fontSize: dimensions.width * 0.07,
+                  fontWeight: 400,
                   color: 'white',
-                  paddingTop: dimensions.width * 0.03,
-                  fontWeight: 400
+                  
+                  textTransform: 'uppercase',
                 }}
               >
-                MY REMINDERS:
+                my reminders:
               </Text>
 
-              <TouchableOpacity
-                onPress={() => setSelectedScreen('NewReminder')}
-                style={{
-                  backgroundColor: '#1E1E1E',
-                  width: dimensions.width * 0.9,
-                  paddingHorizontal: dimensions.width * 0.03,
-                  borderRadius: dimensions.width * 0.037,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  alignSelf: 'center',
-                  paddingVertical: dimensions.height * 0.007,
-                  borderColor: 'white',
-                  borderWidth: dimensions.width * 0.0025,
-                  height: dimensions.height * 0.16,
-                  marginTop: dimensions.height * 0.019,
-                }}
-              >
-                <Image
-                  source={require('../assets/icons/plusIcon.png')}
-                  style={{
-                    width: dimensions.height * 0.025,
-                    height: dimensions.height * 0.025,
 
-                  }}
-                  resizeMode='contain'
-                />
 
-                <Text
+              {reminders.length === 0 ? (
+                <TouchableOpacity
+                  onPress={() => setSelectedScreen('NewReminder')}
                   style={{
-                    fontFamily: fontMontserratRegular,
-                    fontSize: dimensions.width * 0.04,
-                    color: '#A4A4A4',
-                    paddingTop: dimensions.width * 0.03,
-                    fontWeight: 400,
-                    textAlign: 'center',
-                    paddingHorizontal: dimensions.width * 0.2,
+                    backgroundColor: '#1E1E1E',
+                    width: dimensions.width * 0.9,
+                    paddingHorizontal: dimensions.width * 0.03,
+                    borderRadius: dimensions.width * 0.037,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    alignSelf: 'center',
+                    paddingVertical: dimensions.height * 0.007,
+                    borderColor: 'white',
+                    borderWidth: dimensions.width * 0.0025,
+                    height: dimensions.height * 0.16,
+                    marginTop: dimensions.height * 0.019,
                   }}
                 >
-                  There is no reminders now, add new?
-                </Text>
+                  <Image
+                    source={require('../assets/icons/plusIcon.png')}
+                    style={{
+                      width: dimensions.height * 0.025,
+                      height: dimensions.height * 0.025,
 
-              </TouchableOpacity>
+                    }}
+                    resizeMode='contain'
+                  />
+
+                  <Text
+                    style={{
+                      fontFamily: fontMontserratRegular,
+                      fontSize: dimensions.width * 0.04,
+                      color: '#A4A4A4',
+                      paddingTop: dimensions.width * 0.03,
+                      fontWeight: 400,
+                      textAlign: 'center',
+                      paddingHorizontal: dimensions.width * 0.2,
+                    }}
+                  >
+                    There is no reminders now, add new?
+                  </Text>
+
+                </TouchableOpacity>
+
+              ) : (
+                <View
+                  style={{
+                    backgroundColor: '#1E1E1E',
+                    width: dimensions.width * 0.9,
+                    borderRadius: dimensions.width * 0.037,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    alignSelf: 'center',
+                    paddingTop: dimensions.height * 0.025,
+                    paddingBottom: dimensions.height * 0.01,
+                    paddingHorizontal: dimensions.width * 0.04,
+                    borderColor: 'white',
+                    borderWidth: dimensions.width * 0.0025,
+
+                    marginTop: dimensions.height * 0.019,
+                  }}
+                >
+                  <View style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    width: '100%',
+                    justifyContent: 'space-between',
+                  }}>
+                    <Text
+                      style={{
+                        fontFamily: fontMontserratRegular,
+                        fontSize: dimensions.width * 0.043,
+                        color: 'white',
+
+                        fontWeight: 700,
+                        textAlign: 'left',
+                        maxWidth: dimensions.width * 0.7,
+                      }}
+                    >
+                      {reminders[reminders.length - 1].title}
+                    </Text>
+
+                    <TouchableOpacity onPress={() => {
+                      removeReminder(reminders[0]);
+                    }}>
+                      <Image
+                        source={require('../assets/icons/deleteIcon.png')}
+                        style={{
+                          width: dimensions.height * 0.025,
+                          height: dimensions.height * 0.025,
+                          marginRight: dimensions.width * 0.019,
+
+                        }}
+                        resizeMode='contain'
+                      />
+
+                    </TouchableOpacity>
+
+                  </View>
+                  <Text
+                    style={{
+                      fontFamily: fontMontserratRegular,
+                      fontSize: dimensions.width * 0.04,
+                      color: 'white',
+                      paddingTop: dimensions.width * 0.03,
+                      fontWeight: 400,
+                      textAlign: 'left',
+                      alignSelf: 'flex-start',
+                      maxWidth: dimensions.width * 0.7,
+                    }}
+                  >
+                    {reminders[0].comment ? reminders[0].comment : 'No comment'}
+                  </Text>
+
+
+                  <View style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    alignSelf: 'center',
+                    paddingBottom: dimensions.width * 0.03,
+                    width: dimensions.width * 0.8,
+                    marginTop: dimensions.height * 0.02,
+                  }}>
+                    <TouchableOpacity
+                      onPress={() => { }}
+                      style={{
+                        width: dimensions.width * 0.28,
+                        paddingVertical: dimensions.width * 0.03,
+                        backgroundColor: '#FF1A1A',
+                        alignItems: 'center',
+                        borderRadius: dimensions.width * 0.03,
+                        justifyContent: 'center',
+                      }}>
+                      <Text style={{
+                        fontFamily: fontMontserratRegular,
+                        color: 'white',
+                        fontWeight: 700,
+                        fontSize: dimensions.width * 0.04,
+                        textAlign: 'center',
+
+                      }}
+                      >
+                        {calculateRemainingDays(reminders[0].dateAdded, reminders[0].frequency)} Days
+                      </Text>
+                    </TouchableOpacity>
+                    <Text
+                      style={{
+                        fontFamily: fontMontserratRegular,
+                        fontSize: dimensions.width * 0.04,
+                        color: 'white',
+                        fontWeight: 400,
+                        textAlign: 'left',
+                        marginLeft: dimensions.width * 0.03,
+                      }}
+                    >
+                      to change
+                    </Text>
+
+                  </View>
+
+                </View>
+              )}
 
 
 
@@ -412,8 +580,8 @@ const HomeScreen = () => {
 
                   <TouchableOpacity
                     onPress={() => saveFavourite(randomTip)}
-                    style={{ 
-                      alignItems: 'center', 
+                    style={{
+                      alignItems: 'center',
                       backgroundColor: isTipFavorite() ? '#FF1A1A' : '#0F0F0F',
                       paddingVertical: dimensions.height * 0.016,
                       justifyContent: 'center',
@@ -422,28 +590,28 @@ const HomeScreen = () => {
                       flexDirection: 'row',
                     }}
                   >
-                    
-                      <Image
-                        source={require('../assets/icons/saveIcon.png')}
-                        style={{
-                          width: dimensions.width * 0.04,
-                          height: dimensions.width * 0.04,
-                          top: '0%',
-                          textAlign: 'center'
-                        }}
-                        resizeMode="contain"
-                      />
-                      <Text
-                        style={{
-                          textAlign: "center",
-                          fontSize: dimensions.width * 0.04,
-                          fontWeight: 'bold',
-                          paddingHorizontal: dimensions.width * 0.016,
-                          color: 'white',
-                        }}
-                      >
-                        {!isTipFavorite() ?  'Save' : 'Saved'}
-                      </Text>
+
+                    <Image
+                      source={require('../assets/icons/saveIcon.png')}
+                      style={{
+                        width: dimensions.width * 0.04,
+                        height: dimensions.width * 0.04,
+                        top: '0%',
+                        textAlign: 'center'
+                      }}
+                      resizeMode="contain"
+                    />
+                    <Text
+                      style={{
+                        textAlign: "center",
+                        fontSize: dimensions.width * 0.04,
+                        fontWeight: 'bold',
+                        paddingHorizontal: dimensions.width * 0.016,
+                        color: 'white',
+                      }}
+                    >
+                      {!isTipFavorite() ? 'Save' : 'Saved'}
+                    </Text>
                   </TouchableOpacity>
 
                   <TouchableOpacity
@@ -501,7 +669,7 @@ const HomeScreen = () => {
         </View>
       ) : selectedScreen === 'Settings' ? (
         <SettingsScreen setSelectedScreen={setSelectedScreen} selectedScreen={selectedScreen} isNotificationEnabled={isNotificationEnabled} setNotificationEnabled={setNotificationEnabled}
-          isHidePasswordEnabled={isHidePasswordEnabled} setHidePasswordEnabled={setHidePasswordEnabled} 
+          isHidePasswordEnabled={isHidePasswordEnabled} setHidePasswordEnabled={setHidePasswordEnabled}
           isVibrationEnabled={isVibrationEnabled} setVibrationEnabled={setVibrationEnabled}
         />
       ) : selectedScreen === 'Password Generator' ? (
@@ -509,9 +677,9 @@ const HomeScreen = () => {
       ) : selectedScreen === 'NewReminder' ? (
         <NewReminderScreen setSelectedScreen={setSelectedScreen} selectedScreen={selectedScreen} />
       ) : selectedScreen === 'Tips' ? (
-        <TipsScreen setSelectedScreen={setSelectedScreen} selectedScreen={selectedScreen} securityTips={securityTips} favoritesTips={favoritesTips} setFavoritesTips={setFavoritesTips}/>
+        <TipsScreen setSelectedScreen={setSelectedScreen} selectedScreen={selectedScreen} securityTips={securityTips} favoritesTips={favoritesTips} setFavoritesTips={setFavoritesTips} />
       ) : selectedScreen === 'Saved' ? (
-        <SavedTipsScreen setSelectedScreen={setSelectedScreen} selectedScreen={selectedScreen} favoritesTips={favoritesTips} setFavoritesTips={setFavoritesTips}/>
+        <SavedTipsScreen setSelectedScreen={setSelectedScreen} selectedScreen={selectedScreen} favoritesTips={favoritesTips} setFavoritesTips={setFavoritesTips} />
       ) : null}
 
 

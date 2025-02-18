@@ -31,6 +31,8 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>${PRODUCT_NAME} needs access to your photo library to your selecting images.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Iceland-Regular.ttf</string>

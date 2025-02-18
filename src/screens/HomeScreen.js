@@ -170,7 +170,7 @@ const HomeScreen = () => {
         console.log('favourite видалена');
       }
     } catch (error) {
-      console.error('Помилка збереження/видалення локації:', error);
+      console.error('Помилка збереження/видалення tipp:', error);
     }
   };
 
@@ -208,7 +208,7 @@ const HomeScreen = () => {
   }, [selectedEventCategory]);
 
 
-  const shareFact = async () => {
+  const shareTip = async () => {
     try {
       if (!randomTip) {
         Alert.alert('Error', 'No tip here');
@@ -638,7 +638,7 @@ const HomeScreen = () => {
                       flexDirection: 'row',
                       width: dimensions.width * 0.37,
                     }}
-                    onPress={() => shareFact()}
+                    onPress={() => shareTip()}
                   >
                     <Image
                       source={require('../assets/icons/shareIcon.png')}

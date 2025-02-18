@@ -1,6 +1,7 @@
 import { View, Text, Image, Dimensions, StyleSheet, TouchableOpacity, SafeAreaView, Share, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { ScrollView } from 'react-native-gesture-handler';
 
 const fontMontserratRegular = 'Montserrat-Regular';
@@ -25,20 +26,20 @@ const TipsScreen = ({ favoritesTips, setFavoritesTips, securityTips }) => {
 
     const saveTip = async (favourite) => {
         try {
-            const savedTips = await AsyncStorage.getItem('favoritesTips');
-            const parsedFavTips = savedTips ? JSON.parse(savedTips) : [];
+            const savedFav = await AsyncStorage.getItem('favoritesTips');
+            const parsedFav = savedFav ? JSON.parse(savedFav) : [];
 
-            const favIndex = parsedFavTips.findIndex((fav) => fav.id === favourite.id);
+            const favIndex = parsedFav.findIndex((fav) => fav.id === favourite.id);
 
             if (favIndex === -1) {
-                const parsedFavTips = [favourite, ...parsedFavTips];
-                await AsyncStorage.setItem('favoritesTips', JSON.stringify(parsedFavTips));
-                setFavoritesTips(parsedFavTips);
+                const updatedFavs = [favourite, ...parsedFav];
+                await AsyncStorage.setItem('favoritesTips', JSON.stringify(updatedFavs));
+                setFavoritesTips(updatedFavs);
                 console.log('favourite збережена');
             } else {
-                const parsedFavTips = parsedFavTips.filter((fav) => fav.id !== favourite.id);
-                await AsyncStorage.setItem('favoritesTips', JSON.stringify(parsedFavTips));
-                setFavoritesTips(parsedFavTips);
+                const updatedFavs = parsedFav.filter((fav) => fav.id !== favourite.id);
+                await AsyncStorage.setItem('favoritesTips', JSON.stringify(updatedFavs));
+                setFavoritesTips(updatedFavs);
                 console.log('favourite видалена');
             }
         } catch (error) {

@@ -79,7 +79,8 @@ const TipsScreen = ({ favoritesTips, setFavoritesTips, securityTips }) => {
 
                     borderRadius: dimensions.width * 0.05,
                     position: 'relative',
-                    marginBottom: dimensions.height * 0.3,
+                    // marginBottom: dimensions.height * 0.3,
+                    marginBottom: -dimensions.height * 0.1,
                     width: '95%',
                     alignSelf: 'center',
                 }}>

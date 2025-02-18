@@ -190,10 +190,6 @@ const HomeScreen = () => {
   };
 
   useEffect(() => {
-    console.log('favoritesTips:', favoritesTips);
-  }, [favoritesTips]);
-
-  useEffect(() => {
     loadSettings();
   }, [isNotificationEnabled, selectedScreen]);
 

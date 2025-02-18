@@ -2,7 +2,6 @@ import { View, Text, Image, Dimensions, StyleSheet, TouchableOpacity, SafeAreaVi
 import React, { useEffect, useState } from 'react'
 import * as Keychain from 'react-native-keychain';
 import Clipboard from '@react-native-clipboard/clipboard';
-import { set } from 'date-fns';
 
 
 
@@ -12,12 +11,12 @@ const fontIceLandRegular = 'Iceland-Regular';
 const PassGeneratorScreen = ({ isHidePasswordEnabled, generatedPassword, setGeneratedPassword, isVibrationEnabled }) => {
     const [dimensions, setDimensions] = useState(Dimensions.get('window'));
     const [isGeneratingPassword, setIsGeneratingPassword] = useState(false);
-    const [dots, setDots] = useState('');
+    const [animatedStars, setAnimatedStars] = useState('');
 
     useEffect(() => {
-        setDots('');
+        setAnimatedStars('');
         const interval = setInterval(() => {
-            setDots(prevDots => (prevDots.length < 10 ? prevDots + '*' : ''));
+            setAnimatedStars(prevDots => (prevDots.length < 10 ? prevDots + '*' : ''));
         }, 50);
 
         return () => clearInterval(interval);
@@ -35,11 +34,10 @@ const PassGeneratorScreen = ({ isHidePasswordEnabled, generatedPassword, setGene
     const generatePassword = async () => {
 
         try {
-            const password = generateRandomPassword(12); // Generate a 12-character password
+            const password = generateRandomPassword(12); 
             setGeneratedPassword(password);
             Alert.alert('Generated Password', password);
 
-            // Optionally, store the password in the keychain
             await Keychain.setGenericPassword('user', password);
         } catch (error) {
             console.error('Error generating password', error);
@@ -105,7 +103,7 @@ const PassGeneratorScreen = ({ isHidePasswordEnabled, generatedPassword, setGene
                         color: 'white',
                     }}
                 >
-                    {!isGeneratingPassword && isHidePasswordEnabled ? '****_****_****' : !isGeneratingPassword && !isHidePasswordEnabled ? generatedPassword : dots}
+                    {!isGeneratingPassword && isHidePasswordEnabled ? '****_****_****' : !isGeneratingPassword && !isHidePasswordEnabled ? generatedPassword : animatedStars}
                 </Text>
                 <TouchableOpacity onPress={() => {
                     if (generatedPassword === '****_****_****') {

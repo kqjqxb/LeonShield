@@ -1,16 +1,13 @@
 import { View, Text, Image, Dimensions, StyleSheet, TouchableOpacity, SafeAreaView, Share, Alert } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ArrowUpOnSquareIcon } from 'react-native-heroicons/solid';
-import { styled } from 'nativewind';
 import { ScrollView } from 'react-native-gesture-handler';
 
 const fontMontserratRegular = 'Montserrat-Regular';
-const fontMontserratSemiBold = 'Montserrat-SemiBold';
 const fontMontserratBold = 'Montserrat-Bold';
 const fontIceLandRegular = 'Iceland-Regular';
 
-const SavedTipsScreen = ({ savedRecomendations, savedFacts, setSavedRecomendations, setSavedFacts, favoritesTips, setFavoritesTips }) => {
+const SavedTipsScreen = ({ favoritesTips, setFavoritesTips }) => {
     const [dimensions, setDimensions] = useState(Dimensions.get('window'));
 
     const shareSecurityTip = async (favTipTitle) => {

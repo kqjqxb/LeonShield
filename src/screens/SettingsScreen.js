@@ -1,16 +1,15 @@
-import { View, Text, Image, Dimensions, StyleSheet, TouchableOpacity, SafeAreaView, Share, Alert, Switch } from 'react-native'
+import { View, Text, Image, Dimensions, TouchableOpacity, SafeAreaView, Share, Alert, Switch } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNRestart from 'react-native-restart';
 
 const fontMontserratRegular = 'Montserrat-Regular';
-const fontMontserratSemiBold = 'Montserrat-SemiBold';
 const fontMontserratBold = 'Montserrat-Bold';
 const fontIceLandRegular = 'Iceland-Regular';
 
 const appLink = 'https://apps.apple.com/us/app/leonshield-security-assistant/id6742137859';
 
-const SettingsScreen = ({ selectedScreen, setSelectedScreen, isNotificationEnabled, setNotificationEnabled, isHidePasswordEnabled, setHidePasswordEnabled, isVibrationEnabled, setVibrationEnabled }) => {
+const SettingsScreen = ({ isNotificationEnabled, setNotificationEnabled, isHidePasswordEnabled, setHidePasswordEnabled, isVibrationEnabled, setVibrationEnabled }) => {
     const [dimensions, setDimensions] = useState(Dimensions.get('window'));
 
     const toggleHidePasswordSwitch = () => {

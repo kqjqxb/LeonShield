@@ -11,7 +11,7 @@ const fontIceLandRegular = 'Iceland-Regular';
 const OnboardingScreen = () => {
   const [dimensions, setDimensions] = useState(Dimensions.get('window'));
   const navigation = useNavigation();
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
   const slidesRef = useRef(null);
 
@@ -32,22 +32,22 @@ const OnboardingScreen = () => {
 
   const viewableItemsChanged = useRef(({ viewableItems }) => {
     if (viewableItems && viewableItems.length > 0) {
-      setCurrentIndex(viewableItems[0].index);
+      setCurrentSlideIndex(viewableItems[0].index);
     }
   }).current;
 
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 
-  const scrollToTheNextOnboard = () => {
-    if (currentIndex < leonShieldOnboardingData.length - 1) {
-      slidesRef.current.scrollToIndex({ index: currentIndex + 1 });
+  const scrollToTheNextLeonSlide = () => {
+    if (currentSlideIndex < leonShieldOnboardingData.length - 1) {
+      slidesRef.current.scrollToIndex({ index: currentSlideIndex + 1 });
     } else {
       navigation.navigate('Home'); 
     }
   };
 
 
-  const renderItem = ({ item }) => (
+  const renderLeonItem = ({ item }) => (
     <View style={{ width: dimensions.width, flex: 1, justifyContent: 'space-between', alignItems: 'center' }} >
       <View style={{
         width: dimensions.width,
@@ -124,11 +124,11 @@ const OnboardingScreen = () => {
       <View style={{display: 'flex'}}>
         <FlatList
           data={leonShieldOnboardingData}
-          renderItem={renderItem}
-          horizontal
+          renderItem={renderLeonItem}
           bounces={false}
-          pagingEnabled
+          horizontal
           showsHorizontalScrollIndicator={false}
+          pagingEnabled
           keyExtractor={(item) => item.id.toString()}
           onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
             useNativeDriver: false,
@@ -142,9 +142,9 @@ const OnboardingScreen = () => {
 
       <TouchableOpacity
         onPress={() => {
-          if(currentIndex === leonShieldOnboardingData.length - 1) {
+          if(currentSlideIndex === leonShieldOnboardingData.length - 1) {
             navigation.navigate('Home');
-          } else scrollToTheNextOnboard();
+          } else scrollToTheNextLeonSlide();
         }}
         style={{
           bottom: dimensions.height * 0.16,
@@ -158,8 +158,14 @@ const OnboardingScreen = () => {
         }}
       >
         <Text
-          style={{ fontFamily: fontMontserratBold, color: 'white', fontSize: dimensions.width * 0.043, textAlign: 'center', fontWeight: 700 }}>
-            {currentIndex === 0 ? 'Start' : 'Next'}
+          style={{ 
+            fontFamily: fontMontserratBold, 
+            color: 'white', 
+            fontSize: dimensions.width * 0.043, 
+            textAlign: 'center', 
+            fontWeight: 700 
+        }}>
+            {currentSlideIndex === 0 ? 'Start' : 'Next'}
         </Text>
       </TouchableOpacity>
 

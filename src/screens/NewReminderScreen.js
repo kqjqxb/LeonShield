@@ -96,13 +96,10 @@ const NewReminderScreen = ({ selectedScreen }) => {
 
             <TouchableOpacity
                 onPress={() => {
-                    // setIsAddingNewReminder(false);
-                    // setTitle('');
-                    // setFrequency(0);
-                    // setComment('');
-
-                    hereIsBack();
-
+                    setIsAddingNewReminder(false);
+                    setTitle('');
+                    setFrequency(0);
+                    setComment('');
                 }}
                 disabled={!isAddingNewReminder}
                 style={{

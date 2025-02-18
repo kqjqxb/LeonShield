@@ -265,11 +265,8 @@ const HomeScreen = () => {
           <Image
             source={require('../assets/images/leonHomeLogo.png')}
             style={{
-              // width: dimensions.width * 0.52,
-              // height: dimensions.height * 0.088,
-
-              width: selectedScreen === 'Saved' ? dimensions.height * 0.52 : dimensions.width * 0.52,
-              height: selectedScreen === 'Saved' ?  dimensions.height * 0.18 : dimensions.height * 0.088,
+              width: dimensions.width * 0.52,
+              height: dimensions.height * 0.088,
               marginVertical: dimensions.height * 0.01,
             }}
             resizeMode='stretch'
@@ -626,9 +623,7 @@ const HomeScreen = () => {
                       width: dimensions.width * 0.37,
                     }}
                     onPress={() => {
-                      // shareTip();
-
-                      shareMessage();
+                      shareTip();
                     }}
                   >
                     <Image

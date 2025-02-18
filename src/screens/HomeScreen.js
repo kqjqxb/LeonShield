@@ -85,7 +85,6 @@ const securityTips = [
   },
 ];
 
-const fontMontserratBold = 'Montserrat-Bold';
 const fontMontserratRegular = 'Montserrat-Regular';
 
 const fontIceLandRegular = 'Iceland-Regular';
@@ -99,9 +98,6 @@ const HomeScreen = () => {
   const [isVibrationEnabled, setVibrationEnabled] = useState(true);
   const [isNotificationEnabled, setNotificationEnabled] = useState(true);
   const [favoritesTips, setFavoritesTips] = useState([]);
-  const [selectedEventCategory, setSelectedEventCategory] = useState('Markets');
-  const [selectedEvent, setSelectedEvent] = useState(null);
-  const scrollViewRef = useRef(null);
   const [generatedPassword, setGeneratedPassword] = useState('****_****_****');
 
   const [randomTip, setRandomTip] = useState(null);
@@ -151,23 +147,23 @@ const HomeScreen = () => {
 
 
 
-  const saveFavourite = async (favourite) => {
+  const saveTip = async (tipToSave) => {
     try {
-      const savedFav = await AsyncStorage.getItem('favoritesTips');
-      const parsedFav = savedFav ? JSON.parse(savedFav) : [];
+      const savedTip = await AsyncStorage.getItem('favoritesTips');
+      const parsedTip = savedTip ? JSON.parse(savedTip) : [];
 
-      const favIndex = parsedFav.findIndex((fav) => fav.id === favourite.id);
+      const tipIndex = parsedTip.findIndex((fav) => fav.id === tipToSave.id);
 
-      if (favIndex === -1) {
-        const updatedFavs = [favourite, ...parsedFav];
-        await AsyncStorage.setItem('favoritesTips', JSON.stringify(updatedFavs));
-        setFavoritesTips(updatedFavs);
-        console.log('favourite збережена');
+      if (tipIndex === -1) {
+        const updatedTips = [tipToSave, ...parsedTip];
+        await AsyncStorage.setItem('favoritesTips', JSON.stringify(updatedTips));
+        setFavoritesTips(updatedTips);
+        console.log('tipToSave збережена');
       } else {
-        const updatedFavs = parsedFav.filter((fav) => fav.id !== favourite.id);
-        await AsyncStorage.setItem('favoritesTips', JSON.stringify(updatedFavs));
-        setFavoritesTips(updatedFavs);
-        console.log('favourite видалена');
+        const updatedTips = parsedTip.filter((fav) => fav.id !== tipToSave.id);
+        await AsyncStorage.setItem('favoritesTips', JSON.stringify(updatedTips));
+        setFavoritesTips(updatedTips);
+        console.log('tipToSave видалена');
       }
     } catch (error) {
       console.error('Помилка збереження/видалення tipp:', error);
@@ -200,13 +196,6 @@ const HomeScreen = () => {
   useEffect(() => {
     loadSettings();
   }, [isNotificationEnabled, selectedScreen]);
-
-  useEffect(() => {
-    if (scrollViewRef.current) {
-      scrollViewRef.current.scrollTo({ y: 0, animated: false });
-    }
-  }, [selectedEventCategory]);
-
 
   const shareTip = async () => {
     try {
@@ -322,7 +311,6 @@ const HomeScreen = () => {
         }}>
 
           <ScrollView
-            ref={scrollViewRef}
             showsVerticalScrollIndicator={false}
             style={{
               marginTop: dimensions.height * 0.025,
@@ -595,7 +583,7 @@ const HomeScreen = () => {
                 }}>
 
                   <TouchableOpacity
-                    onPress={() => saveFavourite(randomTip)}
+                    onPress={() => saveTip(randomTip)}
                     style={{
                       alignItems: 'center',
                       backgroundColor: isTipFavorite() ? '#FF1A1A' : '#0F0F0F',

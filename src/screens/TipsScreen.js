@@ -24,28 +24,28 @@ const TipsScreen = ({ favoritesTips, setFavoritesTips, securityTips }) => {
         }
     };
 
-    const saveTip = async (favourite) => {
+    const saveTip = async (tipToSave) => {
         try {
-            const savedFav = await AsyncStorage.getItem('favoritesTips');
-            const parsedFav = savedFav ? JSON.parse(savedFav) : [];
-
-            const favIndex = parsedFav.findIndex((fav) => fav.id === favourite.id);
-
-            if (favIndex === -1) {
-                const updatedFavs = [favourite, ...parsedFav];
-                await AsyncStorage.setItem('favoritesTips', JSON.stringify(updatedFavs));
-                setFavoritesTips(updatedFavs);
-                console.log('favourite збережена');
-            } else {
-                const updatedFavs = parsedFav.filter((fav) => fav.id !== favourite.id);
-                await AsyncStorage.setItem('favoritesTips', JSON.stringify(updatedFavs));
-                setFavoritesTips(updatedFavs);
-                console.log('favourite видалена');
-            }
+          const savedTip = await AsyncStorage.getItem('favoritesTips');
+          const parsedTip = savedTip ? JSON.parse(savedTip) : [];
+    
+          const tipIndex = parsedTip.findIndex((fav) => fav.id === tipToSave.id);
+    
+          if (tipIndex === -1) {
+            const updatedTips = [tipToSave, ...parsedTip];
+            await AsyncStorage.setItem('favoritesTips', JSON.stringify(updatedTips));
+            setFavoritesTips(updatedTips);
+            console.log('tipToSave збережена');
+          } else {
+            const updatedTips = parsedTip.filter((fav) => fav.id !== tipToSave.id);
+            await AsyncStorage.setItem('favoritesTips', JSON.stringify(updatedTips));
+            setFavoritesTips(updatedTips);
+            console.log('tipToSave видалена');
+          }
         } catch (error) {
-            console.error('Помилка збереження/видалення локації:', error);
+          console.error('Помилка збереження/видалення tipp:', error);
         }
-    };
+      };
 
     const isTipFavorite = (selectedFavTip) => {
         return favoritesTips.some((fav) => fav.id === selectedFavTip.id);

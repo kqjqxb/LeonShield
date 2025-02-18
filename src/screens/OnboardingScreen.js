@@ -51,10 +51,11 @@ const OnboardingScreen = () => {
     <View style={{ width: dimensions.width, flex: 1, justifyContent: 'space-between', alignItems: 'center' }} >
       <View style={{
         width: dimensions.width,
-        height: '60%',
+        height: dimensions.height * 0.5,
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'center',
+        marginTop: '7%'
       }}>
         <Image
           resizeMode="contain"
@@ -71,7 +72,7 @@ const OnboardingScreen = () => {
         position: 'absolute',
         bottom: 0,
         backgroundColor: 'rgba(255, 26, 26, 1)',
-        height: dimensions.height * 0.403,  
+        height: dimensions.height * 0.435,  
         zIndex: 0, 
         width: dimensions.width, 
         alignSelf: 'center',  
@@ -80,7 +81,7 @@ const OnboardingScreen = () => {
       }}/>
       <View style={{
           alignItems: 'center', 
-          height: '45%',  
+          height: dimensions.height * 0.43,  
           zIndex: 1, 
           width: '100%', 
           alignSelf: 'center',  

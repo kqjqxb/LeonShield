@@ -2,15 +2,26 @@ import { View, Text, Image, Dimensions, StyleSheet, TouchableOpacity, SafeAreaVi
 import React, { useEffect, useState } from 'react'
 import * as Keychain from 'react-native-keychain';
 import Clipboard from '@react-native-clipboard/clipboard';
+import { set } from 'date-fns';
 
 
 
 const fontMontserratBold = 'Montserrat-Bold';
 const fontIceLandRegular = 'Iceland-Regular';
 
-const PassGeneratorScreen = ({ }) => {
+const PassGeneratorScreen = ({ isHidePasswordEnabled, generatedPassword, setGeneratedPassword, isVibrationEnabled }) => {
     const [dimensions, setDimensions] = useState(Dimensions.get('window'));
-    const [generatedPassword, setGeneratedPassword] = useState('');
+    const [isGeneratingPassword, setIsGeneratingPassword] = useState(false);
+    const [dots, setDots] = useState('');
+
+    useEffect(() => {
+        setDots('');
+        const interval = setInterval(() => {
+            setDots(prevDots => (prevDots.length < 10 ? prevDots + '*' : ''));
+        }, 50);
+
+        return () => clearInterval(interval);
+    }, []);
 
     const generateRandomPassword = (length) => {
         const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
@@ -22,6 +33,7 @@ const PassGeneratorScreen = ({ }) => {
     };
 
     const generatePassword = async () => {
+
         try {
             const password = generateRandomPassword(12); // Generate a 12-character password
             setGeneratedPassword(password);
@@ -37,6 +49,12 @@ const PassGeneratorScreen = ({ }) => {
 
 
     const copyToClipboard = () => {
+        if (isVibrationEnabled) {
+            ReactNativeHapticFeedback.trigger("impactLight", {
+                enableVibrateFallback: true,
+                ignoreAndroidSystemSettings: false,
+            });
+        }
         Clipboard.setString(generatedPassword);
         Alert.alert('Copied to Clipboard', 'The generated password has been copied to your clipboard.');
     };
@@ -87,9 +105,15 @@ const PassGeneratorScreen = ({ }) => {
                         color: 'white',
                     }}
                 >
-                    ****_****_****
+                    {!isGeneratingPassword && isHidePasswordEnabled ? '****_****_****' : !isGeneratingPassword && !isHidePasswordEnabled ? generatedPassword : dots}
                 </Text>
-                <TouchableOpacity onPress={copyToClipboard}>
+                <TouchableOpacity onPress={() => {
+                    if (generatedPassword === '****_****_****') {
+                        Alert.alert('Error', 'Please generate a password first');
+                        return;
+                    } else copyToClipboard();
+
+                }}>
                     <Image
                         source={require('../assets/icons/copyIcon.png')}
                         style={{
@@ -105,7 +129,13 @@ const PassGeneratorScreen = ({ }) => {
 
 
             <TouchableOpacity
-                onPress={generatePassword}
+                onPress={() => {
+                    setIsGeneratingPassword(true);
+                    setTimeout(() => {
+                        setIsGeneratingPassword(false);
+                        generatePassword();
+                    }, 2500);
+                }}
                 style={{
                     backgroundColor: '#FF1A1A',
                     padding: dimensions.width * 0.05,

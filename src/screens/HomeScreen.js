@@ -102,6 +102,7 @@ const HomeScreen = () => {
   const [selectedEventCategory, setSelectedEventCategory] = useState('Markets');
   const [selectedEvent, setSelectedEvent] = useState(null);
   const scrollViewRef = useRef(null);
+  const [generatedPassword, setGeneratedPassword] = useState('****_****_****');
 
   const [randomTip, setRandomTip] = useState(null);
   const [reminders, setReminders] = useState([]);
@@ -255,49 +256,61 @@ const HomeScreen = () => {
       <View style={{
         width: '100%',
         alignSelf: 'center',
-        paddingTop: dimensions.height * 0.057,
-        paddingHorizontal: dimensions.width * 0.05,
-        paddingVertical: dimensions.height * 0.01,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: dimensions.width * 0.01,
         alignItems: 'center',
-        backgroundColor: '#151515',
+        backgroundColor: '#FF1A1A',
+        paddingBottom: dimensions.height * 0.0025,
         borderRadius: dimensions.width * 0.05,
       }}>
-        <Image
-          source={require('../assets/images/leonHomeLogo.png')}
-          style={{
-            width: dimensions.width * 0.52,
-            height: dimensions.height * 0.088,
-            marginVertical: dimensions.height * 0.01,
-          }}
-          resizeMode='stretch'
-        />
 
-        <TouchableOpacity
-          style={{
-            backgroundColor: selectedScreen === 'Settings' ? '#FF1A1A' : '#0F0F0F',
-            padding: dimensions.height * 0.0061,
-            borderRadius: dimensions.width * 0.03,
-          }}
-
-          onPress={() => {
-            setSelectedScreen("Settings")
-          }}>
+        <View style={{
+          width: '100%',
+          alignSelf: 'center',
+          paddingTop: dimensions.height * 0.057,
+          paddingHorizontal: dimensions.width * 0.05,
+          paddingVertical: dimensions.height * 0.01,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          padding: dimensions.width * 0.01,
+          alignItems: 'center',
+          backgroundColor: '#151515',
+          borderRadius: dimensions.width * 0.05,
+        }}>
           <Image
-            source={require('../assets/icons/settingsIcon.png')}
+            source={require('../assets/images/leonHomeLogo.png')}
             style={{
-              textAlign: 'center',
-              height: dimensions.height * 0.023,
-              width: dimensions.height * 0.023,
-              margin: dimensions.height * 0.014,
-              alignSelf: 'center',
+              width: dimensions.width * 0.52,
+              height: dimensions.height * 0.088,
+              marginVertical: dimensions.height * 0.01,
             }}
-            resizeMode="contain"
+            resizeMode='stretch'
           />
-        </TouchableOpacity>
 
+          <TouchableOpacity
+            style={{
+              backgroundColor: selectedScreen === 'Settings' ? '#FF1A1A' : '#0F0F0F',
+              padding: dimensions.height * 0.0061,
+              borderRadius: dimensions.width * 0.03,
+            }}
+
+            onPress={() => {
+              setSelectedScreen("Settings")
+            }}>
+            <Image
+              source={require('../assets/icons/settingsIcon.png')}
+              style={{
+                textAlign: 'center',
+                height: dimensions.height * 0.023,
+                width: dimensions.height * 0.023,
+                margin: dimensions.height * 0.014,
+                alignSelf: 'center',
+              }}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+
+        </View>
       </View>
 
       {selectedScreen === 'Home' ? (
@@ -673,7 +686,9 @@ const HomeScreen = () => {
           isVibrationEnabled={isVibrationEnabled} setVibrationEnabled={setVibrationEnabled}
         />
       ) : selectedScreen === 'Password Generator' ? (
-        <PassGeneratorScreen setSelectedScreen={setSelectedScreen} selectedScreen={selectedScreen} />
+        <PassGeneratorScreen setSelectedScreen={setSelectedScreen} selectedScreen={selectedScreen} isHidePasswordEnabled={isHidePasswordEnabled}
+        generatedPassword={generatedPassword} setGeneratedPassword={setGeneratedPassword} isVibrationEnabled={isVibrationEnabled}
+        />
       ) : selectedScreen === 'NewReminder' ? (
         <NewReminderScreen setSelectedScreen={setSelectedScreen} selectedScreen={selectedScreen} />
       ) : selectedScreen === 'Tips' ? (

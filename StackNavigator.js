@@ -71,10 +71,10 @@ const AppNavigator = () => {
   if (initializingLeonShieldApp) {
     return (
       <View style={{
-        backgroundColor: '#000000',
+        justifyContent: 'center',
         alignItems: 'center',
         flex: 1,
-        justifyContent: 'center',
+        backgroundColor: '#000000',
       }}>
         <ActivityIndicator size="large" color="white" />
       </View>

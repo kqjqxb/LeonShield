@@ -33,34 +33,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0078E62E04AD4B599E248A49 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../src/assets/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
-		0D305B92466E434DBB805B19 /* SFProText-HeavyItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-HeavyItalic.ttf"; path = "../src/assets/fonts/SFProText-HeavyItalic.ttf"; sourceTree = "<group>"; };
-		0D780EA8EF5547CB94B11D63 /* SFProText-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-Bold.ttf"; path = "../src/assets/fonts/SFProText-Bold.ttf"; sourceTree = "<group>"; };
+		0078E62E04AD4B599E248A49 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../src/assets/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		0D305B92466E434DBB805B19 /* SFProText-HeavyItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-HeavyItalic.ttf"; path = "../src/assets/fonts/SFProText-HeavyItalic.ttf"; sourceTree = "<group>"; };
+		0D780EA8EF5547CB94B11D63 /* SFProText-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-Bold.ttf"; path = "../src/assets/fonts/SFProText-Bold.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* LeonShield.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeonShield.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = LeonShield/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = LeonShield/Info.plist; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = LeonShield/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		2A1CAF99AE5845B598B1A744 /* MontserratAlternates-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "MontserratAlternates-Bold.ttf"; path = "../src/assets/fonts/MontserratAlternates-Bold.ttf"; sourceTree = "<group>"; };
+		2A1CAF99AE5845B598B1A744 /* MontserratAlternates-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "MontserratAlternates-Bold.ttf"; path = "../src/assets/fonts/MontserratAlternates-Bold.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-LeonShield.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeonShield.debug.xcconfig"; path = "Target Support Files/Pods-LeonShield/Pods-LeonShield.debug.xcconfig"; sourceTree = "<group>"; };
-		46FC72279C2B4DECA4060C4C /* SFProText-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-Medium.ttf"; path = "../src/assets/fonts/SFProText-Medium.ttf"; sourceTree = "<group>"; };
+		46FC72279C2B4DECA4060C4C /* SFProText-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-Medium.ttf"; path = "../src/assets/fonts/SFProText-Medium.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-LeonShield.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeonShield.release.xcconfig"; path = "Target Support Files/Pods-LeonShield/Pods-LeonShield.release.xcconfig"; sourceTree = "<group>"; };
-		58A4FDBF8CBE4FADA19DB839 /* SFProText-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-BoldItalic.ttf"; path = "../src/assets/fonts/SFProText-BoldItalic.ttf"; sourceTree = "<group>"; };
+		58A4FDBF8CBE4FADA19DB839 /* SFProText-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-BoldItalic.ttf"; path = "../src/assets/fonts/SFProText-BoldItalic.ttf"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-LeonShield.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LeonShield.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5F34AEC653784660A500B728 /* SFProText-RegularItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-RegularItalic.ttf"; path = "../src/assets/fonts/SFProText-RegularItalic.ttf"; sourceTree = "<group>"; };
-		634FB8806B4A4671A247E855 /* SFProText-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-Light.ttf"; path = "../src/assets/fonts/SFProText-Light.ttf"; sourceTree = "<group>"; };
-		6B91A0537CC94AAB86B678BD /* MontserratAlternates-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "MontserratAlternates-Black.ttf"; path = "../src/assets/fonts/MontserratAlternates-Black.ttf"; sourceTree = "<group>"; };
+		5F34AEC653784660A500B728 /* SFProText-RegularItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-RegularItalic.ttf"; path = "../src/assets/fonts/SFProText-RegularItalic.ttf"; sourceTree = "<group>"; };
+		634FB8806B4A4671A247E855 /* SFProText-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-Light.ttf"; path = "../src/assets/fonts/SFProText-Light.ttf"; sourceTree = "<group>"; };
+		6B91A0537CC94AAB86B678BD /* MontserratAlternates-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "MontserratAlternates-Black.ttf"; path = "../src/assets/fonts/MontserratAlternates-Black.ttf"; sourceTree = "<group>"; };
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = LeonShield/AppDelegate.swift; sourceTree = "<group>"; };
-		7AC1C18A840D418FA210195A /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Regular.ttf"; path = "../src/assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
-		7B0E308F73FE423494DE4E8D /* SFProText-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-Regular.ttf"; path = "../src/assets/fonts/SFProText-Regular.ttf"; sourceTree = "<group>"; };
+		7AC1C18A840D418FA210195A /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Regular.ttf"; path = "../src/assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		7B0E308F73FE423494DE4E8D /* SFProText-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-Regular.ttf"; path = "../src/assets/fonts/SFProText-Regular.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = LeonShield/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		849E678CF511470FA4F88312 /* SFProText-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-LightItalic.ttf"; path = "../src/assets/fonts/SFProText-LightItalic.ttf"; sourceTree = "<group>"; };
-		9314F515EB34471FAC2B618C /* SFProText-Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-Semibold.ttf"; path = "../src/assets/fonts/SFProText-Semibold.ttf"; sourceTree = "<group>"; };
-		9B6FB44377614B77BC0D56B3 /* SFProText-SemiboldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-SemiboldItalic.ttf"; path = "../src/assets/fonts/SFProText-SemiboldItalic.ttf"; sourceTree = "<group>"; };
-		C9BDDADA09D649219F2D0640 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../src/assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
+		849E678CF511470FA4F88312 /* SFProText-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-LightItalic.ttf"; path = "../src/assets/fonts/SFProText-LightItalic.ttf"; sourceTree = "<group>"; };
+		9314F515EB34471FAC2B618C /* SFProText-Semibold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-Semibold.ttf"; path = "../src/assets/fonts/SFProText-Semibold.ttf"; sourceTree = "<group>"; };
+		9B6FB44377614B77BC0D56B3 /* SFProText-SemiboldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-SemiboldItalic.ttf"; path = "../src/assets/fonts/SFProText-SemiboldItalic.ttf"; sourceTree = "<group>"; };
+		C9BDDADA09D649219F2D0640 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../src/assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F6C2CBFDB7DD4BB18499FEFB /* SFProText-Heavy.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-Heavy.ttf"; path = "../src/assets/fonts/SFProText-Heavy.ttf"; sourceTree = "<group>"; };
-		FC6887ABE5144D31B2020739 /* Iceland-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Iceland-Regular.ttf"; path = "../src/assets/fonts/Iceland-Regular.ttf"; sourceTree = "<group>"; };
-		FF45FC877B9647C1A593E8E5 /* SFProText-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-MediumItalic.ttf"; path = "../src/assets/fonts/SFProText-MediumItalic.ttf"; sourceTree = "<group>"; };
+		F6C2CBFDB7DD4BB18499FEFB /* SFProText-Heavy.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-Heavy.ttf"; path = "../src/assets/fonts/SFProText-Heavy.ttf"; sourceTree = "<group>"; };
+		FC6887ABE5144D31B2020739 /* Iceland-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Iceland-Regular.ttf"; path = "../src/assets/fonts/Iceland-Regular.ttf"; sourceTree = "<group>"; };
+		FF45FC877B9647C1A593E8E5 /* SFProText-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFProText-MediumItalic.ttf"; path = "../src/assets/fonts/SFProText-MediumItalic.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +110,6 @@
 				9B6FB44377614B77BC0D56B3 /* SFProText-SemiboldItalic.ttf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -341,6 +340,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LeonShield/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
@@ -354,7 +354,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.leonshield.securityassistant.app;
 				PRODUCT_NAME = LeonShield;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -369,6 +369,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = LeonShield/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -381,7 +382,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.leonshield.securityassistant.app;
 				PRODUCT_NAME = LeonShield;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -457,10 +458,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
@@ -529,10 +527,7 @@
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 					"-DFOLLY_HAVE_CLOCK_GETTIME=1",
 				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					" ",
-				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				USE_HERMES = true;

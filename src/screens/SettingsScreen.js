@@ -8,6 +8,8 @@ const fontMontserratSemiBold = 'Montserrat-SemiBold';
 const fontMontserratBold = 'Montserrat-Bold';
 const fontIceLandRegular = 'Iceland-Regular';
 
+const appLink = 'https://apps.apple.com/us/app/leonshield-security-assistant/id6742137859';
+
 const SettingsScreen = ({ selectedScreen, setSelectedScreen, isNotificationEnabled, setNotificationEnabled, isHidePasswordEnabled, setHidePasswordEnabled, isVibrationEnabled, setVibrationEnabled }) => {
     const [dimensions, setDimensions] = useState(Dimensions.get('window'));
 
@@ -32,7 +34,7 @@ const SettingsScreen = ({ selectedScreen, setSelectedScreen, isNotificationEnabl
     const shareApp = async () => {
         try {
             await Share.share({
-                message: `Join Leon Shield - Security Assistent! ''`,
+                message: `Join Leon Shield - Security Assistent! \n${appLink}`,
             });
         } catch (error) {
             console.error('Error tip:', error);
@@ -69,13 +71,13 @@ const SettingsScreen = ({ selectedScreen, setSelectedScreen, isNotificationEnabl
                     text: 'Delete', 
                     onPress: clearAsyncStorage,
                     style: 'default',
-                    textStyle: { fontWeight: 'normal' } // тонкий текст
+                    textStyle: { fontWeight: 'normal' } 
                 },
                 {
                     text: 'Cancel',
                     onPress: () => console.log('Cancel Pressed'),
                     style: 'cancel',
-                    textStyle: { fontWeight: 'bold' } // жирний текст
+                    textStyle: { fontWeight: 'bold' } 
                 }
             ],
             { cancelable: false }

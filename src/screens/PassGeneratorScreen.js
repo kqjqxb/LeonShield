@@ -2,7 +2,7 @@ import { View, Text, Image, Dimensions, StyleSheet, TouchableOpacity, SafeAreaVi
 import React, { useEffect, useState } from 'react'
 import * as Keychain from 'react-native-keychain';
 import Clipboard from '@react-native-clipboard/clipboard';
-
+import ReactNativeHapticFeedback from "react-native-haptic-feedback";
 
 
 const fontMontserratBold = 'Montserrat-Bold';
@@ -12,6 +12,7 @@ const PassGeneratorScreen = ({ isHidePasswordEnabled, generatedPassword, setGene
     const [dimensions, setDimensions] = useState(Dimensions.get('window'));
     const [isGeneratingPassword, setIsGeneratingPassword] = useState(false);
     const [animatedStars, setAnimatedStars] = useState('');
+    const [isCopied, setIsCopied] = useState(false);
 
     useEffect(() => {
         setAnimatedStars('');
@@ -34,7 +35,7 @@ const PassGeneratorScreen = ({ isHidePasswordEnabled, generatedPassword, setGene
     const generatePassword = async () => {
 
         try {
-            const password = generateRandomPassword(12); 
+            const password = generateRandomPassword(12);
             setGeneratedPassword(password);
             Alert.alert('Generated Password', password);
 
@@ -47,6 +48,10 @@ const PassGeneratorScreen = ({ isHidePasswordEnabled, generatedPassword, setGene
 
 
     const copyToClipboard = () => {
+        setIsCopied(true);
+        setTimeout(() => {
+            setIsCopied(false);
+        }, 2100);
         if (isVibrationEnabled) {
             ReactNativeHapticFeedback.trigger("impactLight", {
                 enableVibrateFallback: true,
@@ -54,7 +59,7 @@ const PassGeneratorScreen = ({ isHidePasswordEnabled, generatedPassword, setGene
             });
         }
         Clipboard.setString(generatedPassword);
-        Alert.alert('Copied to Clipboard', 'The generated password has been copied to your clipboard.');
+        // Alert.alert('Copied to Clipboard', 'The generated password has been copied to your clipboard.');
     };
 
     return (
@@ -110,17 +115,39 @@ const PassGeneratorScreen = ({ isHidePasswordEnabled, generatedPassword, setGene
                         Alert.alert('Error', 'Please generate a password first');
                         return;
                     } else copyToClipboard();
-
-                }}>
+                }}
+                    style={{
+                        position: 'relative',
+                        zIndex: 1,
+                    }}
+                >
                     <Image
                         source={require('../assets/icons/copyIcon.png')}
                         style={{
                             width: dimensions.width * 0.05,
                             height: dimensions.width * 0.05,
                             alignSelf: 'center',
+
                         }}
                         resizeMode='contain'
                     />
+
+                    {isCopied && (
+                        <Image
+                            source={require('../assets/icons/copiedIcon.png')}
+                            style={{
+                                width: dimensions.height * 0.14,
+                                height: dimensions.height * 0.14,
+                                alignSelf: 'center',
+                                position: 'absolute',
+                                bottom: -dimensions.height * 0.111,
+                                marginLeft: dimensions.width * 0.01,
+                                overflow: 'hidden',
+                                zIndex: 500,
+                            }}
+                            resizeMode='contain'
+                        />
+                    )}
                 </TouchableOpacity>
             </View>
 

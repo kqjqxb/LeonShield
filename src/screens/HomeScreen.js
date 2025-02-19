@@ -265,7 +265,7 @@ const HomeScreen = () => {
           <Image
             source={require('../assets/images/leonHomeLogo.png')}
             style={{
-              width: dimensions.width * 0.52,
+              width: dimensions.width * 0.505,
               height: dimensions.height * 0.088,
               marginVertical: dimensions.height * 0.01,
             }}

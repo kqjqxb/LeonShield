@@ -37,7 +37,7 @@ const PassGeneratorScreen = ({ isHidePasswordEnabled, generatedPassword, setGene
         try {
             const password = generateRandomPassword(12);
             setGeneratedPassword(password);
-            Alert.alert('Generated Password', password);
+            Alert.alert('Password successfully generated', 'You can copy it!');
 
             await Keychain.setGenericPassword('user', password);
         } catch (error) {
@@ -59,7 +59,6 @@ const PassGeneratorScreen = ({ isHidePasswordEnabled, generatedPassword, setGene
             });
         }
         Clipboard.setString(generatedPassword);
-        // Alert.alert('Copied to Clipboard', 'The generated password has been copied to your clipboard.');
     };
 
     return (
